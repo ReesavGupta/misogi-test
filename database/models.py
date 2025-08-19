@@ -1,8 +1,9 @@
 from pydantic import BaseModel, PositiveInt
 from datetime import date
+from typing import Optional
+from dataclasses import Field
 
 class User(BaseModel):
-    id : int
     username: str 
     email: str
     password: str 
@@ -11,26 +12,22 @@ class User(BaseModel):
     height: str
     goals: str
 
-# Workouts: id, user_id, plan_name, date, exercises, duration
+# Workouts: , plan_name, date, exercises, duration
 class Workouts(BaseModel): 
-    workout_id: str
     user_id: User
     plan_name: str
     date: date
     excercises: str
     duration:  str
 
-
-# Nutrition: id, user_id, date, meals, calories, macros
+# Nutrition: , date, meals, calories, macros
 class Nutrition(BaseModel):
-    nutrition_id: str
     user_id: User
     date: date
     meals: str
 
-# Progress: id, user_id, workout_id, sets, reps, weights, notes
+# Progress: , workout_id, sets, reps, weights, notes
 class Progress(BaseModel):
-    id: str
     user_id : str   
     workout_id : Workouts
     sets: int
