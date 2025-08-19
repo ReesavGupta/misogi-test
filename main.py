@@ -1,6 +1,11 @@
-def main():
-    print("Hello from misogi-test!")
+import uvicorn
+from fastapi import FastAPI
 
+app = FastAPI()
+
+@app.get("/health")
+def heatlth():
+    return {"status": "ok"}
 
 if __name__ == "__main__":
-    main()
+    uvicorn.run(app, host="0.0.0.0", port=8000)
