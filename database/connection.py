@@ -19,17 +19,19 @@ async def close_db():
         client.close()
     
 
-async def get_user(user: User):
-    email = user.email
+async def get_user(email: str):
     db = get_db()
+    print(email)
     collection = db.get_collection("users") #type: ignore
-    new_user= await collection.find_one({email: email})
-    print(new_user)
+    user= await collection.find_one({email: email})
+    print(user)
+    return user
 
 
 async def insert_one_user(user: User):
     db = get_db()
     # print("this is the db: ", db)
     collection = db.get_collection("users") #type: ignore
+    user.authenticated = True
     new_user= await collection.insert_one(user.__dict__)
     print(new_user)

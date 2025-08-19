@@ -11,6 +11,7 @@ class User(BaseModel):
     weight: str 
     height: str
     goals: str
+    authenticated: bool
 
 # Workouts: , plan_name, date, exercises, duration
 class Workouts(BaseModel): 
